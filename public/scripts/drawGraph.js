@@ -31,32 +31,36 @@ const options = {
 const ctx1 = document.getElementById("myChart").getContext("2d");
 const ctx2 = document.getElementById("myChart2").getContext("2d");
 
-let chart1;
-let chart2;
+let chart;
 
 tester.addEventListener("click", () => {
     window.location.href = "/";
 });
 
-function createChart1(ctx, data, options) {
-    if (chart1) {
-        chart1.destroy();
+function createChart(ctx, data, options, chartNumber) {
+    if (chart) {
+        chart.destroy();
     }
-    chart1 = new Chart(ctx, {
+    chart = new Chart(ctx, {
         type: "line",
         data: data,
         options: options
-    })
+    });
+    window[`chart${chartNumber}`] = chart;
 }
-function createChart2(ctx, data, options) {
-    if (chart2) {
-        chart2.destroy();
+
+function drawGarph(data) {
+    const { timestamps, datasets1, datasets2 } = extractData(data)
+    const chartData1 = {
+        labels: timestamps,
+        datasets: datasets1
     }
-    chart2 = new Chart(ctx, {
-        type: "line",
-        data: data,
-        options: options
-    })
+    const chartData2 = {
+        labels: timestamps,
+        datasets: datasets2
+    }
+    createChart(ctx1, chartData1, options, 1);
+    createChart(ctx2, chartData2, options, 2);
 }
 
 function extractData(data) {
@@ -94,20 +98,7 @@ function extractData(data) {
 
 fetch("/getDataBySession")
     .then(response => response.json())
-    .then(data => {
-        const { timestamps, datasets1, datasets2 } = extractData(data)
-        const chartData1 = {
-            labels: timestamps,
-            datasets: datasets1
-        }
-        const chartData2 = {
-            labels: timestamps,
-            datasets: datasets2
-        }
-        createChart1(ctx1, chartData1, options);
-        createChart2(ctx2, chartData2, options);
-    })
-
+    .then(data => createChart(data))
     .catch(error => console.error("Error fetching data:", error));
 
 document.querySelector(".drop").addEventListener("click", function (event) {
@@ -167,21 +158,7 @@ document.getElementById("confirm").addEventListener("click", function () {
             body: JSON.stringify({ session: sessionValue })
         })
             .then(response => response.json())
-            .then(data => {
-            console.log(`data: ${data}`);
-            
-                const { timestamps, datasets1, datasets2 } = extractData(data)
-                const chartData1 = {
-                    labels: timestamps,
-                    datasets: datasets1
-                }
-                const chartData2 = {
-                    labels: timestamps,
-                    datasets: datasets2
-                }
-                createChart1(ctx1, chartData1, options);
-                createChart2(ctx2, chartData2, options);
-            })
+            .then(data => createChart(data))
             .catch(error => console.error("Error:", error));
     }
 });
