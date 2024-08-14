@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph</title>
+    <link rel="stylesheet" href="graph.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+</head>
+
+<body>
+    <div class="workspace">
+        <div id="canvass">
+            <div class="temp">
+                <span>Temperature graph</span>
+                <canvas id="myChart" width="800" height="400"></canvas> </canvas>
+            </div>
+            <div class="temp">
+                <span>Trigger graph</span>
+                <canvas id="myChart2" width="800" height="400"></canvas> </canvas>
+            </div>
+        </div>
+        <div class="drop">
+            <span>Select session</span>
+            <div class="options" id="options">
+                <div class="time">
+                    <span>Show data from</span>
+                    <input type="date" id="time1">
+                    <button id="seeSession">See sessions</button>
+                </div>
+                <div id="session_block">
+                    <span>Session</span>
+                    <input type="number" id="session" list="sessions-list" placeholder="session number">
+                    <datalist id="sessions-list"></datalist>
+                    <button id="lastSession">Last session</button>
+                </div>
+                <div> <button id="confirm">Confirm</button></div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <button id="tester">Return to Tester</button>
+    
+    <script src="/scripts/drawGraph.js"></script>
+</body>
+
+</html>
