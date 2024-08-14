@@ -16,10 +16,10 @@ const options = {
             labels: {
                 usePointStyle: true,
                 pointStyle: "rectRounded",
-                color: "rgb(102, 102, 102)", // цвет текста
+                color: "rgb(102, 102, 102)",
                 font: {
-                    family: "sans-serif", // шрифт
-                    size: 14 // размер шрифта
+                    family: "sans-serif",
+                    size: 14
                 },
                 boxWidth: 15,
                 boxHeight: 15
@@ -92,22 +92,23 @@ function extractData(data) {
     return { timestamps, datasets1, datasets2 };
 }
 
+function createGraph(data) {
+    const { timestamps, datasets1, datasets2 } = extractData(data)
+    const chartData1 = {
+        labels: timestamps,
+        datasets: datasets1
+    }
+    const chartData2 = {
+        labels: timestamps,
+        datasets: datasets2
+    }
+    createChart1(ctx1, chartData1, options);
+    createChart2(ctx2, chartData2, options);
+}
+
 fetch("/getDataBySession")
     .then(response => response.json())
-    .then(data => {
-        const { timestamps, datasets1, datasets2 } = extractData(data)
-        const chartData1 = {
-            labels: timestamps,
-            datasets: datasets1
-        }
-        const chartData2 = {
-            labels: timestamps,
-            datasets: datasets2
-        }
-        createChart1(ctx1, chartData1, options);
-        createChart2(ctx2, chartData2, options);
-    })
-
+    .then(data => createGraph(data))
     .catch(error => console.error("Error fetching data:", error));
 
 document.querySelector(".drop").addEventListener("click", function (event) {
@@ -167,20 +168,7 @@ document.getElementById("confirm").addEventListener("click", function () {
             body: JSON.stringify({ session: sessionValue })
         })
             .then(response => response.json())
-            .then(data => {
-                console.log("data", data);
-                const { timestamps, datasets1, datasets2 } = extractData(data)
-                const chartData1 = {
-                    labels: timestamps,
-                    datasets: datasets1
-                }
-                const chartData2 = {
-                    labels: timestamps,
-                    datasets: datasets2
-                }
-                createChart1(ctx1, chartData1, options);
-                createChart2(ctx2, chartData2, options);
-            })
+            .then(data => createGraph(data))
             .catch(error => console.error("Error:", error));
     }
 });

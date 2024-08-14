@@ -5,38 +5,43 @@ const secInput = document.getElementById("sec");
 const graph = document.getElementById("seeGraph")
 let timerId = null;
 
-startBtn.addEventListener("click", () => {
-    const min = Math.max(0, parseInt(minInput.value, 10) || 0);
-    const sec = Math.min(59, Math.max(0, parseInt(secInput.value, 10) || 0));
-    const checkboxStates = Array.from(document.querySelectorAll(".dvoynoy input[type='checkbox']")).map(checkbox => checkbox.checked);
-    if (min > 0 || sec > 0) {
-        if (confirm(`Are you sure you want to start ${min} min ${sec} sec session? `)) {
-            fetch("/start", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ min, sec, checkboxStates })
-            })
-                .then(response => response.text())
-                .then(data => console.log(data))
-                .catch(error => console.error(error));
+const timer = {
+    start: () => {
+        const min = Math.max(0, parseInt(minInput.value, 10) || 0);
+        const sec = Math.min(59, Math.max(0, parseInt(secInput.value, 10) || 0));
+        const checkboxStates = Array.from(document.querySelectorAll(".dvoynoy input[type='checkbox']")).map(checkbox => checkbox.checked);
+        if (min > 0 || sec > 0) {
+            if (confirm(`Are you sure you want to start ${min} min ${sec} sec session? `)) {
+                fetch("/start", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ min, sec, checkboxStates })
+                })
+                    .then(response => response.text())
+                    .then(data => console.log(data))
+                    .catch(error => console.error(error));
 
-            setTimeout(() => {
-                console.log(`Session is over`);
-            }, min * 60 * 1000 + sec * 1000);
+                setTimeout(() => {
+                    console.log(`Session is over`);
+                }, min * 60 * 1000 + sec * 1000);
+            }
         }
+    },
+    stop: () => {
+        fetch("/stop", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" }
+        })
+            .then(response => response.text())
+            .then(message => console.log(message))
+            .catch(error => console.error(error));
     }
-});
+}
 
-stopBtn.addEventListener("click", () => {
-    fetch("/stop", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" }
-    })
-        .then(response => response.text())
-        .then(message => console.log(message));
-});
+startBtn.addEventListener("click", timer.start);
+stopBtn.addEventListener("click", timer.stop);
 
 function sendMessage() {
     const input = document.getElementById("myInput");
@@ -81,7 +86,6 @@ function updateElements(message) {
                 triggerElements[i].style.backgroundColor = triggerValue === "1" ? "#9dff00" : "#FF9100";
                 triggerElements[i].innerText = `Trigger${i + 1}`;
             }
-
         }
     }
 }
