@@ -84,7 +84,7 @@ function updateElements(message) {
 
         sample.innerText = values[0];
         maxTemp.innerText = values[1];
-        for (let i = 1; i < 8; i++) {
+        for (let i = 0; i < 7; i++) {
             const tempValue = values[2 + i * 2];
             const triggerValue = values[3 + i * 2];
             if (tempValue === "error") {
@@ -96,7 +96,7 @@ function updateElements(message) {
                 tempElements[i].innerText = tempValue;
                 tempElements[i].style.backgroundColor = "#FF9100";
                 triggerElements[i].style.backgroundColor = triggerValue === "1" ? "#9dff00" : "#FF9100";
-                triggerElements[i].innerText = `Trigger${i + 1}`;
+                triggerElements[i].innerText = `Trigger ${i + 2}`;
             }
         }
     }
