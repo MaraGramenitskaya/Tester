@@ -31,21 +31,16 @@ const options = {
 const ctx1 = document.getElementById("myChart").getContext("2d");
 const ctx2 = document.getElementById("myChart2").getContext("2d");
 
-let chart1;
-let chart2;
+const charts = {};
 
-function createChart(ctx, data, options, chart) {
-    if (chart) {
-        chart.destroy();
+function createChart(ctx, data, options, chartId) {
+    if (charts[chartId]) {
+        charts[chartId].destroy();
     }
-    chart = new Chart(ctx, {
-        type: "line",
-        data: data,
-        options: options
-    });
+    charts[chartId] = new Chart(ctx, { type: "line", data: data, options: options });
 }
 
-function drawGarph(data) {
+function drawGraph(data) {
     const { timestamps, datasets1, datasets2 } = extractData(data)
     const chartData1 = {
         labels: timestamps,
@@ -55,8 +50,8 @@ function drawGarph(data) {
         labels: timestamps,
         datasets: datasets2
     }
-    createChart(ctx1, chartData1, options, chart1);
-    createChart(ctx2, chartData2, options, chart2);
+    createChart(ctx1, chartData1, options, 'chart1');
+    createChart(ctx2, chartData2, options, 'chart2');
 }
 
 function extractData(data) {
@@ -94,7 +89,7 @@ function extractData(data) {
 
 fetch("/getDataBySession")
     .then(response => response.json())
-    .then(data => drawGarph(data))
+    .then(data => drawGraph(data))
     .catch(error => console.error("Error fetching data:", error));
 
 document.querySelector(".drop").addEventListener("click", function (event) {
@@ -154,7 +149,7 @@ document.getElementById("confirm").addEventListener("click", function () {
             body: JSON.stringify({ session: sessionValue })
         })
             .then(response => response.json())
-            .then(data => drawGarph(data))
+            .then(data => drawGraph(data))
             .catch(error => console.error("Error:", error));
     }
 });
