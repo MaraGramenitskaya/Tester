@@ -44,7 +44,7 @@ input {
     text-align: center;
 }
 
-.display, .sensor {
+.display, .sensor, .trigger {
     display: flex;
     justify-content: center;
     align-items: center;
