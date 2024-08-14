@@ -19,19 +19,6 @@
             </div>
         </div>
         <div id="big" class="display">
-            <script>
-                for (let i = 1; i <= 7; i++) {
-                    const div = document.createElement("div");
-                    div.className = "dvoynoy";
-                    div.innerHTML = `
-                    <p>${i}</p>
-                        <div id="temp${i}" class="sensor temp display">Temp ${i}</div>
-                        <div id="trigger${i}" class="sensor display">Trigger ${i}</div>
-                        <input type="checkbox" id="checkbox${i}" checked>
-                    `;
-                    document.getElementById("big").appendChild(div);
-                }
-            </script>
         </div>
     </section>
     <div class="form display">
