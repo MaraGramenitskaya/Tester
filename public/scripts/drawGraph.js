@@ -31,13 +31,10 @@ const options = {
 const ctx1 = document.getElementById("myChart").getContext("2d");
 const ctx2 = document.getElementById("myChart2").getContext("2d");
 
-let chart;
+let chart1;
+let chart2;
 
-tester.addEventListener("click", () => {
-    window.location.href = "/";
-});
-
-function createChart(ctx, data, options, chartNumber) {
+function createChart(ctx, data, options, chart) {
     if (chart) {
         chart.destroy();
     }
@@ -46,7 +43,6 @@ function createChart(ctx, data, options, chartNumber) {
         data: data,
         options: options
     });
-    window[`chart${chartNumber}`] = chart;
 }
 
 function drawGarph(data) {
@@ -59,8 +55,8 @@ function drawGarph(data) {
         labels: timestamps,
         datasets: datasets2
     }
-    createChart(ctx1, chartData1, options, 1);
-    createChart(ctx2, chartData2, options, 2);
+    createChart(ctx1, chartData1, options, chart1);
+    createChart(ctx2, chartData2, options, chart2);
 }
 
 function extractData(data) {
@@ -98,7 +94,7 @@ function extractData(data) {
 
 fetch("/getDataBySession")
     .then(response => response.json())
-    .then(data => createChart(data))
+    .then(data => drawGarph(data))
     .catch(error => console.error("Error fetching data:", error));
 
 document.querySelector(".drop").addEventListener("click", function (event) {
@@ -158,7 +154,11 @@ document.getElementById("confirm").addEventListener("click", function () {
             body: JSON.stringify({ session: sessionValue })
         })
             .then(response => response.json())
-            .then(data => createChart(data))
+            .then(data => drawGarph(data))
             .catch(error => console.error("Error:", error));
     }
+});
+
+tester.addEventListener("click", () => {
+    window.location.href = "/";
 });

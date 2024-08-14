@@ -86,7 +86,6 @@ body {
     border: 1px solid #ccc;
     margin-top: 5px;
     text-align: center;
-    color: black;
 }
 
 input {
@@ -98,6 +97,7 @@ input {
     padding: 2px;
     background-color: var(--primary-color);
     color: var(--secondary-color);
+    color: black;
 }
 
 button {
