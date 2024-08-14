@@ -39,7 +39,7 @@ client.on("connect", () => {
                 client.subscribe(topic);
                 subscribedTopics.push(topic);
             } else {
-                console.log("Invalid topic. Use "subscribe <topic>"");
+                console.log("Invalid topic. Use 'subscribe <topic>'");
             }
         } else if (userInput.startsWith("unsubscribe ")) {
             const topic = userInput.substring(11).trim();
@@ -50,14 +50,14 @@ client.on("connect", () => {
                     subscribedTopics.splice(index, 1);
                 }
             } else {
-                console.log("Invalid topic. Use "unsubscribe <topic>"");
+                console.log("Invalid topic. Use 'unsubscribe <topic>'");
             }
         } else {
             const [topic, message] = userInput.split(" ", 2);
             if (topic && message) {
                 client.publish(topic, message, { qos, retain: false });
             } else {
-                console.log("Invalid input format. Use "<topic> <message>"");
+                console.log("Invalid input format. Use '<topic> <message>'");
             }
         }
     });
