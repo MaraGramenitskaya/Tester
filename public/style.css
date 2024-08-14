@@ -50,15 +50,16 @@ input {
     align-items: center;
 }
 
-.sensor, .temp {
+.sensor, .trigger {
     width: 100%;
     height: 100px;
     background-color: var(--temp);
     border-radius: var(--border-radius);
+    margin-bottom: 10%;
 }
 
-.temp {
-    margin-bottom: 10%;
+.trigger {
+    margin-bottom: 0;
 }
 
 #top {
