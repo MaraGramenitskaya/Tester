@@ -40,6 +40,18 @@ const timer = {
     }
 }
 
+for (let i = 1; i <= 7; i++) {
+    const div = document.createElement("div");
+    div.className = "dvoynoy";
+    div.innerHTML = `
+        <p>${i}</p>
+        <div id="temp${i}" class="sensor">Temp ${i}</div>
+        <div id="trigger${i}" class="trigger">Trigger ${i}</div>
+        <input type="checkbox" id="checkbox${i}" checked>
+        `;
+    document.getElementById("big").appendChild(div);
+}
+
 startBtn.addEventListener("click", timer.start);
 stopBtn.addEventListener("click", timer.stop);
 
@@ -68,11 +80,11 @@ function updateElements(message) {
         const sample = document.getElementById("sample");
         const maxTemp = document.getElementById("setTemp");
         const tempElements = ["temp1", "temp2", "temp3", "temp4", "temp5", "temp6", "temp7"].map(id => document.getElementById(id));
-        const triggerElements = ["trigger1", "trigger2", "trigger3", "trigge4", "trigger5", "trigge6", "trigge7"].map(id => document.getElementById(id));
+        const triggerElements = ["trigger1", "trigger2", "trigger3", "trigger4", "trigger5", "trigger6", "trigger7"].map(id => document.getElementById(id));
 
         sample.innerText = values[0];
         maxTemp.innerText = values[1];
-        for (let i = 0; i < 7; i++) {
+        for (let i = 1; i < 8; i++) {
             const tempValue = values[2 + i * 2];
             const triggerValue = values[3 + i * 2];
             if (tempValue === "error") {
@@ -99,15 +111,3 @@ setInterval(() => {
 graph.addEventListener("click", () => {
     window.location.href = "/graph";
 });
-
-for (let i = 1; i <= 7; i++) {
-    const div = document.createElement("div");
-    div.className = "dvoynoy";
-    div.innerHTML = `
-        <p>${i}</p>
-        <div id="temp${i}" class="sensor">Temp ${i}</div>
-        <div id="trigger${i}" class="trigger">Trigger ${i}</div>
-        <input type="checkbox" id="checkbox${i}" checked>
-        `;
-    document.getElementById("big").appendChild(div);
-}
