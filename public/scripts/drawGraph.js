@@ -31,7 +31,6 @@ const options = {
 const ctx1 = document.getElementById("myChart").getContext("2d");
 const ctx2 = document.getElementById("myChart2").getContext("2d");
 
-let chart2;
 let chart;
 
 function createChart(ctx, data, options, chartNumber) {
@@ -44,16 +43,6 @@ function createChart(ctx, data, options, chartNumber) {
         options: options
     });
     window[`chart${chartNumber}`] = chart;
-}
-function createChart2(ctx, data, options) {
-    if (chart2) {
-        chart2.destroy();
-    }
-    chart2 = new Chart(ctx, {
-        type: "line",
-        data: data,
-        options: options
-    })
 }
 
 function extractData(data) {
@@ -100,7 +89,7 @@ function createGraph(data) {
         datasets: datasets2
     }
     createChart(ctx1, chartData1, options, 1);
-    createChart2(ctx2, chartData2, options);
+    createChart(ctx2, chartData2, options, 2);
 }
 
 fetch("/getDataBySession")
