@@ -31,22 +31,19 @@ const options = {
 const ctx1 = document.getElementById("myChart").getContext("2d");
 const ctx2 = document.getElementById("myChart2").getContext("2d");
 
-let chart1;
 let chart2;
+let chart;
 
-tester.addEventListener("click", () => {
-    window.location.href = "/";
-});
-
-function createChart1(ctx, data, options) {
-    if (chart1) {
-        chart1.destroy();
+function createChart(ctx, data, options, chartNumber) {
+    if (chart) {
+        chart.destroy();
     }
-    chart1 = new Chart(ctx, {
+    chart = new Chart(ctx, {
         type: "line",
         data: data,
         options: options
-    })
+    });
+    window[`chart${chartNumber}`] = chart;
 }
 function createChart2(ctx, data, options) {
     if (chart2) {
@@ -87,7 +84,7 @@ function extractData(data) {
                 i++
             }
         }
-
+        
     }
     return { timestamps, datasets1, datasets2 };
 }
@@ -102,14 +99,14 @@ function createGraph(data) {
         labels: timestamps,
         datasets: datasets2
     }
-    createChart1(ctx1, chartData1, options);
+    createChart(ctx1, chartData1, options, 1);
     createChart2(ctx2, chartData2, options);
 }
 
 fetch("/getDataBySession")
-    .then(response => response.json())
-    .then(data => createGraph(data))
-    .catch(error => console.error("Error fetching data:", error));
+.then(response => response.json())
+.then(data => createGraph(data))
+.catch(error => console.error("Error fetching data:", error));
 
 document.querySelector(".drop").addEventListener("click", function (event) {
     this.querySelector("div").style.display = "flex";
@@ -129,7 +126,7 @@ document.getElementById("lastSession").addEventListener("click", async () => {
     });
     const lastSession = await response.json();
     document.getElementById("session").value = lastSession.lastSession;
-
+    
 })
 
 document.getElementById("seeSession").addEventListener("click", function () {
@@ -143,17 +140,17 @@ document.getElementById("seeSession").addEventListener("click", function () {
             },
             body: JSON.stringify({ date: date })
         })
-            .then(response => response.json())
-            .then(sessions => {
-                const sessionsList = document.getElementById("sessions-list");
-                sessionsList.innerHTML = "";
-                sessions.forEach(session => {
-                    const option = document.createElement("option");
-                    option.value = session;
-                    sessionsList.appendChild(option);
-                });
-            })
-            .catch(error => console.error("Ошибка:", error));
+        .then(response => response.json())
+        .then(sessions => {
+            const sessionsList = document.getElementById("sessions-list");
+            sessionsList.innerHTML = "";
+            sessions.forEach(session => {
+                const option = document.createElement("option");
+                option.value = session;
+                sessionsList.appendChild(option);
+            });
+        })
+        .catch(error => console.error("Ошибка:", error));
     }
 });
 
@@ -167,8 +164,12 @@ document.getElementById("confirm").addEventListener("click", function () {
             },
             body: JSON.stringify({ session: sessionValue })
         })
-            .then(response => response.json())
-            .then(data => createGraph(data))
-            .catch(error => console.error("Error:", error));
+        .then(response => response.json())
+        .then(data => createGraph(data))
+        .catch(error => console.error("Error:", error));
     }
+});
+
+tester.addEventListener("click", () => {
+    window.location.href = "/";
 });
