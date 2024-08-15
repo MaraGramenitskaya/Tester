@@ -17,7 +17,6 @@ const options = {
 
 const client = mqtt.connect(options);
 
-//подключение к mqtt
 client.on("connect", () => {
     console.log(`Connected to mqtt`);
 

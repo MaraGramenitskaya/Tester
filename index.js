@@ -37,14 +37,12 @@ viewLastSession();
 client.on("message", (receivedTopic, payload) => {
     console.log("Received Message:", receivedTopic, payload.toString());
 
-    // проверка topic
     if (receivedTopic === "test/Temp") {
         cachedMessage = payload.toString();
         lastIndex = cachedMessage.lastIndexOf(",");
         hash = cachedMessage.slice(lastIndex + 1);
         cachedMessage = cachedMessage.slice(0, lastIndex);
 
-        //проверка хэша
         if (crc16(cachedMessage + ",").toString(16) == hash) {
             if (start == true) {
                 const arr = cachedMessage.split(",");

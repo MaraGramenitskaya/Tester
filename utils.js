@@ -15,7 +15,6 @@ async function connect() {
     return connection;
 }
 
-// Функция для добавления сообщения в базу данных
 async function insertMessageIntoDatabase(columnNames, values) {
     try {
         const connection = await connect();
@@ -28,7 +27,6 @@ async function insertMessageIntoDatabase(columnNames, values) {
     }
 }
 
-//hash function
 function crc16(s) {
     var crc = 0xFFFF;
     var j, i;
