@@ -1,5 +1,5 @@
 const mqtt = require("mqtt");
-const { mqttHost, mqttUsername, mqttPassword } = require("./app.config");
+const { mqttHost, mqttUsername, mqttPassword } = require("./.env");
 const clientId = "emqx_nodejs_" + Math.random().toString(16).substring(2, 8);
 const qos = 2;
 let subscribedTopics = ["test/Max", "test/Temp"];

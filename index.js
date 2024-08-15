@@ -18,7 +18,7 @@ const graphHandler = require("./routes/graphRoute");
 const getDataBySessionHandler = require("./routes/getDataBySessionRoute")
 const getSessionHandler = require("./routes/getSessionRoute")
 const confirmSessionHandler = require("./routes/confirmSessionRoute")
-const port = require("./app.config").brilliantPort;
+const port = require("./.env").brilliantPort;
 
 let start = false;
 let timeoutId = null;

@@ -1,4 +1,4 @@
-app.config
+.env
 tester.service
 tester.sh
 инструкция
