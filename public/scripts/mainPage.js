@@ -96,7 +96,7 @@ function updateElements(message) {
                 tempElements[i].innerText = tempValue;
                 tempElements[i].style.backgroundColor = "#FF9100";
                 triggerElements[i].style.backgroundColor = triggerValue === "1" ? "#9dff00" : "#FF9100";
-                triggerElements[i].innerText = `Trigger ${i + 2}`;
+                triggerElements[i].innerText = `Trigger ${i + 1}`;
             }
         }
     }
