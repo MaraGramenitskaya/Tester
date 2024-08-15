@@ -19,7 +19,7 @@ const getDataBySessionHandler = require("./routes/getDataBySessionRoute")
 const getSessionHandler = require("./routes/getSessionRoute")
 const confirmSessionHandler = require("./routes/confirmSessionRoute")
 require('dotenv').config();
-const port = process.env.BRILLIANT_PORT || 3010;
+const port = process.env.BRILLIANT_PORT;
 
 let start = false;
 let timeoutId = null;
