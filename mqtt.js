@@ -1,5 +1,8 @@
 const mqtt = require("mqtt");
-const { mqttHost, mqttUsername, mqttPassword } = require("./.env");
+require('dotenv').config();
+const mqttHost = process.env.MQTT_HOST || "192.168.1.10";
+const mqttUsername = process.env.MQTT_USERNAME || "Tahat";
+const mqttPassword = process.env.MQTT_PASSWORD || "Tahat2023";
 const clientId = "emqx_nodejs_" + Math.random().toString(16).substring(2, 8);
 const qos = 2;
 let subscribedTopics = ["test/Max", "test/Temp"];
