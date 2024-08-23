@@ -45,8 +45,8 @@ for (let i = 1; i <= 7; i++) {
     div.className = "dvoynoy";
     div.innerHTML = `
         <p>${i}</p>
-        <div id="temp${i}" class="sensor">Temp ${i}</div>
-        <div id="trigger${i}" class="trigger">Trigger ${i}</div>
+        <div id="temp${i}" class="sensor">Темп ${i}</div>
+        <div id="trigger${i}" class="trigger">Триггер ${i}</div>
         <input type="checkbox" id="checkbox${i}" checked>
         `;
     document.getElementById("big").appendChild(div);
