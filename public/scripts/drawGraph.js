@@ -16,6 +16,11 @@ const options = {
         pointStyle: 'circle' 
       }
     },
+    interaction: {
+      mode: 'index',
+      intersect: false
+    },
+    bezierCurve: true,
     plugins: {
         legend: {
             display: true,
@@ -36,7 +41,6 @@ const options = {
 
 const ctx1 = document.getElementById("myChart").getContext("2d");
 const ctx2 = document.getElementById("myChart2").getContext("2d");
-
 const charts = {};
 
 function createChart(ctx, data, options, chartId) {
@@ -146,7 +150,7 @@ document.getElementById("seeSession").addEventListener("click", function () {
 
 document.getElementById("confirm").addEventListener("click", function () {
     const sessionValue = document.getElementById("session").value;
-    if (confirm(`Вы уверены, что хотите увидеть график ${sessionValue} сессии?`)) {
+    if (confirm(`Вы уверены, что хотите посмотреить график за ${sessionValue} сессию?`)) {
         fetch("/confirmSession", {
             method: "POST",
             headers: {
