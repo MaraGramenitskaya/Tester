@@ -140,7 +140,7 @@ document.getElementById("seeSession").addEventListener("click", function () {
 
 document.getElementById("confirm").addEventListener("click", function () {
     const sessionValue = document.getElementById("session").value;
-    if (confirm(`Are you sure you want to see ${sessionValue} session?`)) {
+    if (confirm(`Вы уверены, что хотите увидеть график ${sessionValue} сессии?`)) {
         fetch("/confirmSession", {
             method: "POST",
             headers: {
