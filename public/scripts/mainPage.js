@@ -11,7 +11,7 @@ const timer = {
         const sec = Math.min(59, Math.max(0, parseInt(secInput.value, 10) || 0));
         const checkboxStates = Array.from(document.querySelectorAll(".dvoynoy input[type='checkbox']")).map(checkbox => checkbox.checked);
         if (min > 0 || sec > 0) {
-            if (confirm(`Are you sure you want to start ${min} min ${sec} sec session? `)) {
+            if (confirm(`Вы уверены, что хотите начать ${min} минутную и ${sec} секундную сессию? `)) {
                 fetch("/start", {
                     method: "POST",
                     headers: {
@@ -21,11 +21,11 @@ const timer = {
                 })
                     .then(response => response.text())
                     .then(data => console.log(data))
+                    .then(setTimeout(() => {
+                            alert(`Сессия закнчена`);
+                            console.log(`Сессия закончена`);
+                            }, min * 60 * 1000 + sec * 1000);)
                     .catch(error => console.error(error));
-
-                setTimeout(() => {
-                    console.log(`Session is over`);
-                }, min * 60 * 1000 + sec * 1000);
             }
         }
     },
