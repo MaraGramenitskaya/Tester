@@ -21,10 +21,7 @@ const timer = {
                 })
                     .then(response => response.text())
                     .then(data => console.log(data))
-                    .then(setTimeout(() => {
-                            alert(`Сессия закнчена`);
-                            console.log(`Сессия закончена`);
-                            }, min * 60 * 1000 + sec * 1000);)
+                    .then(displayNotification(min, sec))
                     .catch(error => console.error(error));
             }
         }
@@ -111,3 +108,26 @@ setInterval(() => {
 graph.addEventListener("click", () => {
     window.location.href = "/graph";
 });
+
+function displayNotification(min, sec) {
+    const notif = document.getElementById('notification');
+    const notifText = document.getElementById('notificationText');
+    notif.style.background = '#9dff00';
+
+	console.log(min +' '+ sec)
+    notif.style.display = 'block';
+    setTimeout(() => {
+        notif.classList.add('hide');
+        setTimeout(() => {
+            notif.style.display = 'none';
+            notif.classList.remove('hide');
+        }, 500);
+    }, min * 65 * 1000 + sec * 1000);
+    let secondsPassed = min * 60 + sec;
+    const timerInterval = setInterval(() => {
+        if(secondsPassed>0){
+	secondsPassed--;
+        notifText.textContent = `Оставшееся время сессии: ${secondsPassed}с`;
+	}    
+}, 1000);
+}
