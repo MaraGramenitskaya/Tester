@@ -58,7 +58,7 @@ stopBtn.addEventListener("click", timer.stop);
 function sendMessage() {
     const input = document.getElementById("myInput");
     const inputValue = (input.value * 10).toString().substr(0, 3) / 10
-    if (confirm(`Are you sure you want to set Max Temp: "${inputValue}"?`)) {
+    if (confirm(`Вы уверены, что хотите задать температуру нагрева: "${inputValue}"?`)) {
         const setTemp = document.getElementById("setTemp");
         setTemp.innerText = inputValue;
         fetch("/send-message", {
