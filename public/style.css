@@ -68,7 +68,7 @@ input {
 
 #left {
     margin: auto;
-    width: 10%;
+    width: fit-content;
     height: 250px;
     padding: 1%;
     background-color: var(--main-color);
