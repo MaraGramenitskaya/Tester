@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graph</title>
+    <title>График</title>
     <link rel="stylesheet" href="graph.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
@@ -14,36 +14,36 @@
     <div class="workspace">
         <div id="canvass">
             <div class="temp">
-                <span>Temperature graph</span>
+                <span>График температурных датчиков</span>
                 <canvas id="myChart" width="800" height="400"></canvas> </canvas>
             </div>
             <div class="temp">
-                <span>Trigger graph</span>
-                <canvas id="myChart2" width="800" height="400"></canvas> </canvas>
+                <span>График защитных датчиков</span>
+                <canvas id="myChart2" width="800" height="200"></canvas> </canvas>
             </div>
         </div>
         <div class="drop">
-            <span>Select session</span>
+            <span>Выбрать сессию</span>
             <div class="options" id="options">
                 <div class="inputBlock">
-                    <span>Show data from</span>
+                    <span>Показать сессии по дате</span>
                     <input type="date" id="time1">
-                    <button id="seeSession">See sessions</button>
+                    <button id="seeSession">Показать</button>
                 </div>
                 <div class="inputBlock">
-                    <span>Session</span>
-                    <input type="number" id="session" list="sessions-list" placeholder="session number">
+                    <span>Сессия</span>
+                    <input type="number" id="session" list="sessions-list" placeholder="номер сессии">
                     <datalist id="sessions-list"></datalist>
-                    <button id="lastSession">Last session</button>
+                    <button id="lastSession">Номер последней сессии</button>
                 </div>
-                <button id="confirm">Confirm</button>
+                <button id="confirm">Подтвердить</button>
 
             </div>
 
         </div>
 
     </div>
-    <button id="tester">Return to Tester</button>
+    <button id="tester">Вернуться к тестеру</button>
 
     <script src="/scripts/drawGraph.js"></script>
 </body>

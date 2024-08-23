@@ -68,7 +68,7 @@ input {
 
 #left {
     margin: auto;
-    width: 10%;
+    width: fit-content;
     height: 250px;
     padding: 1%;
     background-color: var(--main-color);
@@ -135,4 +135,27 @@ input[type="checkbox"] {
     width: 150px;
     height: 30px;
     margin-top: 150px;
+}
+
+.notification-container {
+    position: absolute;
+    bottom: 80px;
+    right: 50px;
+    background-size: contain; 
+    background-repeat: no-repeat;
+    display: none;
+    opacity: 1; /* Полная непрозрачность */
+    transition: opacity 0.5s ease; /* Плавный переход для opacity */
+    border-radius: var(--border-radius);
+}
+
+.hide {
+    opacity: 0; /* Прозрачность */
+}
+
+.notification-container p {
+    font-size: 15px;    
+    width: 220px;
+    color: #1E1E1E;
+    margin: 5px
 }

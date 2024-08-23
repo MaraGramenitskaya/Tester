@@ -4,17 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tester</title>
+    <title>Тестер</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body class="display">
+    <div class="notification-container" id="notification">
+	    <p>Запись в бд начата</p>
+            <p id="notificationText"></p>
+    </div>
     <section id="top" class="display">
         <div id="left" class="display dvoynoy">
-            <p>Sample</p>
-            <div id="sample" class="sensor">Sample</div>
+            <p>Образец</p>
+            <div id="sample" class="sensor">Образец</div>
             <div id="maxTemp" class="sensor">
-                <p>Max Temp</p>
+                <p>Заданная температура</p>
                 <p id="setTemp"></p>
             </div>
         </div>
@@ -22,14 +26,14 @@
         </div>
     </section>
     <div class="form display">
-        <input id="myInput" class="centered" type="number" placeholder="Set temp">
-        <button id="button" onclick="sendMessage()">Set</button>
-        <button id="start" class="time">Start</button>
-        <input type="number" id="min" class="timeInput centered" placeholder="Min" value="5">
-        <input type="number" id="sec" class="timeInput centered" placeholder="Sec" value="0">
-        <button id="stop" class="time">Stop</button>
+        <input id="myInput" class="centered" type="number" placeholder="темп">
+        <button id="button" onclick="sendMessage()">Задать температуру</button>
+        <button id="start" class="time">Старт</button>
+        <input type="number" id="min" class="timeInput centered" placeholder="Мин" value="5">
+        <input type="number" id="sec" class="timeInput centered" placeholder="Сек" value="0">
+        <button id="stop" class="time">Стоп</button>
     </div>
-    <button id="seeGraph" class="">See graph</button>
+    <button id="seeGraph" class="">Посмотреть график</button>
 
     <script src="/scripts/mainPage.js"></script>
 </body>

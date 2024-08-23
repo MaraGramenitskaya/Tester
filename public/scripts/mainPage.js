@@ -11,7 +11,7 @@ const timer = {
         const sec = Math.min(59, Math.max(0, parseInt(secInput.value, 10) || 0));
         const checkboxStates = Array.from(document.querySelectorAll(".dvoynoy input[type='checkbox']")).map(checkbox => checkbox.checked);
         if (min > 0 || sec > 0) {
-            if (confirm(`Are you sure you want to start ${min} min ${sec} sec session? `)) {
+            if (confirm(`Вы уверены, что хотите начать ${min} минутную и ${sec} секундную сессию? `)) {
                 fetch("/start", {
                     method: "POST",
                     headers: {
@@ -21,11 +21,8 @@ const timer = {
                 })
                     .then(response => response.text())
                     .then(data => console.log(data))
+                    .then(displayNotification(min, sec))
                     .catch(error => console.error(error));
-
-                setTimeout(() => {
-                    console.log(`Session is over`);
-                }, min * 60 * 1000 + sec * 1000);
             }
         }
     },
@@ -45,8 +42,8 @@ for (let i = 1; i <= 7; i++) {
     div.className = "dvoynoy";
     div.innerHTML = `
         <p>${i}</p>
-        <div id="temp${i}" class="sensor">Temp ${i}</div>
-        <div id="trigger${i}" class="trigger">Trigger ${i}</div>
+        <div id="temp${i}" class="sensor">Темп ${i}</div>
+        <div id="trigger${i}" class="trigger">Триггер ${i}</div>
         <input type="checkbox" id="checkbox${i}" checked>
         `;
     document.getElementById("big").appendChild(div);
@@ -58,7 +55,7 @@ stopBtn.addEventListener("click", timer.stop);
 function sendMessage() {
     const input = document.getElementById("myInput");
     const inputValue = (input.value * 10).toString().substr(0, 3) / 10
-    if (confirm(`Are you sure you want to set Max Temp: "${inputValue}"?`)) {
+    if (confirm(`Вы уверены, что хотите задать температуру нагрева: "${inputValue}"?`)) {
         const setTemp = document.getElementById("setTemp");
         setTemp.innerText = inputValue;
         fetch("/send-message", {
@@ -111,3 +108,26 @@ setInterval(() => {
 graph.addEventListener("click", () => {
     window.location.href = "/graph";
 });
+
+function displayNotification(min, sec) {
+    const notif = document.getElementById('notification');
+    const notifText = document.getElementById('notificationText');
+    notif.style.background = '#9dff00';
+
+	console.log(min +' '+ sec)
+    notif.style.display = 'block';
+    setTimeout(() => {
+        notif.classList.add('hide');
+        setTimeout(() => {
+            notif.style.display = 'none';
+            notif.classList.remove('hide');
+        }, 500);
+    }, min * 65 * 1000 + sec * 1000);
+    let secondsPassed = min * 60 + sec;
+    const timerInterval = setInterval(() => {
+        if(secondsPassed>0){
+	secondsPassed--;
+        notifText.textContent = `Оставшееся время сессии: ${secondsPassed}с`;
+	}    
+}, 1000);
+}
