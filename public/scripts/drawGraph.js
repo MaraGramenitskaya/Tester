@@ -10,6 +10,12 @@ const options = {
             hoverRadius: 3
         }
     },
+    elements: {
+      point: {
+        radius: 0, 
+        pointStyle: 'circle' 
+      }
+    },
     plugins: {
         legend: {
             display: true,
