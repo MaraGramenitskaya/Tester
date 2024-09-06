@@ -42,7 +42,11 @@ for (let i = 1; i <= 7; i++) {
     div.className = "dvoynoy";
     div.innerHTML = `
         <p>${i}</p>
+<<<<<<< HEAD
         <div id="temp${i}" class="sensor">Температура ${i}</div>
+=======
+        <div id="temp${i}" class="sensor">Темп ${i}</div>
+>>>>>>> eaa79282cf5352fa5c0a57a4103cda84f1d5757a
         <div id="trigger${i}" class="trigger">Триггер ${i}</div>
         <input type="checkbox" id="checkbox${i}" checked>
         `;
