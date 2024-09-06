@@ -1,16 +1,21 @@
 :root {
-    --main-color: #ffeed8;
-    --button-color: #767676;
-    --temp: #FF9100;
+    --main-color: #fff;
+    --button-color: #ff7d00;
+    --temp: #ffdab7;
     --input-color: white;
     --shadow-color: #a1a1a1;
+    --border-color: #747474;
     --border-radius: 0.5rem;
 }
 
 body {
-    flex-direction: column;
     font-size: 20px;
     text-align: center;
+    padding: 10px;
+    background-image: url("images/bg.png");
+    background-size: cover;
+    background-attachment: fixed;
+    flex-direction: column;
 }
 
 p {
@@ -26,7 +31,6 @@ button {
     height: 40px;
     margin: 1%;
     cursor: pointer;
-    box-shadow: 0px 5px 10px var(--shadow-color);
     color: var(--input-color);
 }
 
@@ -36,8 +40,7 @@ input {
     width: 70px;
     height: 30px;
     margin: 1%;
-    border: none;
-    box-shadow: 0px 2px 5px;
+    border: solid 1px var(--border-color);
 }
 
 .centered {
@@ -56,14 +59,16 @@ input {
     background-color: var(--temp);
     border-radius: var(--border-radius);
     margin-bottom: 10%;
+    border: solid 1px var(--border-color);
+    box-shadow: 3px 3px 5px 0px rgba(116, 116, 116, 0.25);
 }
 
 .trigger {
     margin-bottom: 0;
 }
 
-#top {
-    width: 90%;
+section {
+    flex-direction: column;
 }
 
 #left {
@@ -72,8 +77,21 @@ input {
     height: 250px;
     padding: 1%;
     background-color: var(--main-color);
+    border: solid 2px var(--border-color);
     border-radius: var(--border-radius);
     flex-direction: column;
+}
+
+#bottom {
+    border: solid 2px var(--border-color);
+    border-radius: var(--border-radius);
+    width: 100%;
+    background-color: #ffe7d1;
+    margin-left: 10px;
+}
+
+#myInput {
+    width: 50%;
 }
 
 #maxTemp {
@@ -86,10 +104,11 @@ input {
 
 #big {
     width: 100%;
-    margin: 10px;
+    margin: 10px 0 10px 10px;
     background-color: var(--main-color);
     border-radius: var(--border-radius);
     flex-wrap: wrap;
+    border: solid 2px var(--border-color);
 }
 
 .dvoynoy {
@@ -97,6 +116,9 @@ input {
     margin-top: 1%;
     width: 12%;
     height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 input[type="checkbox"] {
@@ -107,46 +129,32 @@ input[type="checkbox"] {
     width: 20px;
 }
 
-.form {
-    width: 60%;
-    height: 60px;
+#setTime{
+    width: 50%;
+    margin: 10px;
 }
 
-.timeInput {
-    width: 50px;
-    height: 30px;
-}
-
-.time {
-    width: 100px;
-    height: 40px;
-}
-
-#start {
-    margin-left: 150px;
-}
-
-#stop {
-    margin-left: 20px;
+#setTempForm{
+    width: 40%;
+    margin: 10px;
 }
 
 #seeGraph {
-    position: static;
     width: 150px;
-    height: 30px;
-    margin-top: 150px;
+    height: 90px;
+    background-color: rgba(255, 245, 235, 1);
+    border: solid 1.5px var(--border-color);
+    color: rgba(50, 50, 50, 1);
 }
 
 .notification-container {
-    position: absolute;
-    bottom: 80px;
-    right: 50px;
     background-size: contain; 
     background-repeat: no-repeat;
     display: none;
     opacity: 1; /* Полная непрозрачность */
     transition: opacity 0.5s ease; /* Плавный переход для opacity */
     border-radius: var(--border-radius);
+    width: 150px;
 }
 
 .hide {

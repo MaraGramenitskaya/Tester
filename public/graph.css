@@ -1,18 +1,49 @@
+/* Переменные */
 :root {
-    --primary-color: #FF9100;
-    --secondary-color: #767676;
-    --background-color: #ffeed8;
-    --border-radius: 0.5rem;
+    --background-color: #fff;
+    --button-color: #ff7d00;
+    --span-color: rgba(255, 218, 183, 1);
+    --border-color: #747474;
+    --text-color-1: rgba(50, 50, 50, 1);
+    --placeholder-color: rgba(201, 201, 201, 1);
+    --border: solid var(--border-color);
+    --border-radius: 5px;
+    --input-button-width: 175px;
 }
 
+/* left (Левая часть программы) */
+/* right - правая часть программы с графиками и надписью */
+body, .drop, .options, .inputBlock, .graph, .left, .right{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+label, button, .drop {
+    cursor: pointer;
+}
+
+/* Стили для элементов с скруглением углов */
+.inputBlock, input, button {
+    border-radius: var(--border-radius);
+}
+
+/* Основные стили */
 body {
     font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    align-items: start;
+    flex-direction: row;
     justify-content: center;
+    background-image: url(images/bg.png);
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
 }
 
+/* Скроллбар */
 ::-webkit-scrollbar {
     width: 10px;
     height: 5px;
@@ -21,132 +52,123 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #FF9100;
+    background: var(--button-color);
     border-radius: 0.5rem;
-    margin-top: 57px;
-    border: 2px solid white;
 }
 
-.workspace {
-    display: flex;
-    justify-content: center;
+.left {
+    position: absolute;
+    right: calc(50% + 415px);
 }
 
+/* Выпадающее меню */
 .drop {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
     position: relative;
-    height: 55px;
 }
 
 .drop>span {
-    box-shadow: 0px 5px 10px #a1a1a1;
-    padding: 5px;
-    background-color: var(--secondary-color);
-    width: 150px;
-    text-align: center;
+    color: var(--text-color-1);
+    padding: 10px 0;
+    width: 250px;
     height: 20px;
-    margin: 10px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    border-radius: var(--border-radius);
-}
-
-.options {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #FF9F60;
-    border-radius: 1rem;
-    position: absolute;
-    top: 35px;
-    left: auto;
-    border: 1px solid #ddd;
-    padding: 10px;
-    right: 0;
-    width: 160px;
-    margin-top: 15px;
-    cursor: auto;
-    color: #414141;
+    background-color: var(--span-color);
+    border: var(--border) 2px;
+    border-radius: 10px;
 }
 
 .drop:hover.options {
     display: block;
 }
 
-.inputBlock {
-    display: flex;
-    flex-direction: column;
+/* Элементы выпадающего меню */
+.options {
+    color: #414141;
+    padding: 10px;
+    top: 60px;
     background-color: var(--background-color);
-    border-radius: var(--border-radius);
-    padding: 5px;
-    width: 150px;
-    border: 1px solid #ccc;
-    margin-top: 5px;
-    text-align: center;
+    border: solid 2px var(--border-color);
+    border-radius: 15px;
+    position: absolute;
+    display: none;
+    cursor: auto;
 }
 
+/* Блоки ввода */
+.inputBlock {
+    padding: 5px;
+    margin: 10px 2.5px;
+    width: 215px;
+    height: 120px;
+    background-color: var(--span-color);
+    border: var(--border) 1.5px;
+}
+
+/* Поля ввода */
 input {
     text-align: center;
-    height: 15px;
-    border-radius: var(--border-radius);
-    border: none;
-    margin: 2px;
     padding: 2px;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    color: black;
+    margin: 2px;
+    width: var(--input-button-width);
+    height: 15px;
+    border: solid 1px var(--border-color);
+    cursor: text;
 }
 
+/* Placeholder */
+input::placeholder {
+    color: var(--placeholder-color);
+}
+
+/* Кнопки */
 button {
-    border-radius: var(--border-radius);
-    margin-top: 5px;
-    padding: 5px;
-    cursor: pointer;
-    background-color: var(--secondary-color);
-    box-shadow: 0px 5px 10px #a1a1a1;
-    border: none;
+    font-size: 12px;
     color: white;
-    width: 150px;
+    padding: 5px;
+    margin-top: 5px;
+    width: var(--input-button-width);
+    background-color: var(--button-color);
+    border: none;
 }
 
-.temp {
+span {
+    padding: 15px;
+}
+
+/* Блоки графиков */
+.graph {
+    margin: 15px 25px;
     background-color: var(--background-color);
-    padding-top: 15px;
+    border: var(--border) 2px;
     border-radius: 1rem;
-    margin: 10px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
 }
 
-.temp span {
-    margin: 10px;
-    text-align: center;
-}
-
+/* Холст графиков */
 canvas {
+    margin: 15px;
     overflow-clip-margin: content-box;
     overflow: clip;
     display: block;
     box-sizing: border-box;
-    height: 400px;
-    width: 800px;
-    border: #EF7613;
-    margin: 15px;
 }
 
-#return {
-    position: static;
-    width: 150px;
-    height: 30px;
-    margin-top: 25px;
-    text-align: center;
+/* Текст внизу */
+#Tahat {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(116, 116, 116, 1);
+    bottom: 0;
+    position: relative;
 }
 
-label {
-    cursor: pointer;
+/* Кнопка возвращения */
+#tester {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-color-1);
+    margin: 20px 0 15px;
+    width: 250px;
+    height: 40px;
+    background-color: var(--span-color);
+    border: var(--border) 2px;
+    border-radius: 10px;
 }

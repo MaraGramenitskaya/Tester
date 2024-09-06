@@ -11,28 +11,19 @@
 </head>
 
 <body>
-    <div class="workspace">
-        <div id="canvass">
-            <div class="temp">
-                <span>График температурных датчиков</span>
-                <canvas id="myChart" width="800" height="400"></canvas> </canvas>
-            </div>
-            <div class="temp">
-                <span>График защитных датчиков</span>
-                <canvas id="myChart2" width="800" height="200"></canvas> </canvas>
-            </div>
-        </div>
+    <div class="left">
+        <button id="tester">Вернуться к тестеру</button>
         <div class="drop">
-            <span>Выбрать сессию</span>
+            <span>Выбор сессии</span>
             <div class="options" id="options">
                 <div class="inputBlock">
                     <span>Показать сессии по дате</span>
-                    <input type="date" id="time1">
+                    <input type="date" id="time1" value="2024-10-01">
                     <button id="seeSession">Показать</button>
                 </div>
                 <div class="inputBlock">
                     <span>Сессия</span>
-                    <input type="number" id="session" list="sessions-list" placeholder="номер сессии">
+                    <input type="number" id="session" list="sessions-list" placeholder="номер">
                     <datalist id="sessions-list"></datalist>
                     <button id="lastSession">Номер последней сессии</button>
                 </div>
@@ -41,10 +32,19 @@
             </div>
 
         </div>
-
     </div>
-    <button id="tester">Вернуться к тестеру</button>
-
+    <div class="right">
+        <div class="graph">
+            <span>График температурных датчиков</span>
+            <canvas id="myChart" width="750px" height="400"></canvas> </canvas>
+        </div>
+        <div class="graph">
+            <span>График защитных датчиков</span>
+            <canvas id="myChart2" width="750px" height="200"></canvas> </canvas>
+        </div>
+        <span id="Tahat">ТахатАКСИ</span>
+    </div>
+    
     <script src="/scripts/drawGraph.js"></script>
 </body>
 
