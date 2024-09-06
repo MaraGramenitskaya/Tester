@@ -15,7 +15,6 @@ body {
     background-image: url("images/bg.png");
     background-size: cover;
     background-attachment: fixed;
-    flex-direction: column;
 }
 
 p {
@@ -141,7 +140,6 @@ input[type="checkbox"] {
 
 #seeGraph {
     width: 150px;
-<<<<<<< HEAD
     height: 90px;
     background-color: rgba(255, 245, 235, 1);
     border: solid 1.5px var(--border-color);
@@ -149,26 +147,13 @@ input[type="checkbox"] {
 }
 
 .notification-container {
-=======
-    height: 30px;
-    margin-top: 150px;
-}
-
-.notification-container {
-    position: absolute;
-    bottom: 80px;
-    right: 50px;
->>>>>>> eaa79282cf5352fa5c0a57a4103cda84f1d5757a
     background-size: contain; 
     background-repeat: no-repeat;
     display: none;
     opacity: 1; /* Полная непрозрачность */
     transition: opacity 0.5s ease; /* Плавный переход для opacity */
     border-radius: var(--border-radius);
-<<<<<<< HEAD
     width: 150px;
-=======
->>>>>>> eaa79282cf5352fa5c0a57a4103cda84f1d5757a
 }
 
 .hide {
