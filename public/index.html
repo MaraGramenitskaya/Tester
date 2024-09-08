@@ -10,43 +10,47 @@
 </head>
 
 <body class="display">
-    <section class="display">
-        <div id="left" class="display dvoynoy">
-            <p>Образец</p>
-            <div id="sample" class="sensor">Образец</div>
-            <div id="maxTemp" class="sensor">
-                <p>Заданная температура</p>
-                <p id="setTemp"></p>
-            </div>
-	</div>
-            <div class="notification-container" id="notification">
-                    <p>Запись в бд начата</p>
-                    <p id="notificationText"></p>
-            </div>
-    </section>
-    <section class="display">
-        <div id="big" class="display"></div>
-	<div class="display" id="bottom">   
-	        <div id="setTempForm">
-	            <span>Задать максимальную температуру</span>
-			<div>
-		            <input id="myInput" class="centered" type="number" placeholder="Max. температура">
-		            <button id="button" onclick="sendMessage()">Задать</button>
+	<main class="display">
+		<section class="display section" id="left"> 
+			<div id="leftSensors" class="display dvoynoy">
+				<p>Образец</p>
+				<div id="sample" class="sensor">Образец</div>
+				<div id="maxTemp" class="sensor">
+					<p>Заданная<br> температура</p>
+					<p id="setTemp"></p>
+				</div>
+		</div>
+				<div class="notification-container display" id="notification">
+						<p id="startText">Запись в БД начата</p>
+						<p id="notificationText"></p>
+				</div>
+		</section>
+		<section class="display section">
+			<div id="big" class="display"></div>
+		<div class="display" id="bottom">   
+				<div id="setTempForm">
+					<span>Задать максимальную температуру</span>
+				<div class="inputForm">
+						<input id="myInput" class="centered" type="number" placeholder="Max. температура">
+						<button id="button" onclick="sendMessage()">Задать</button>
+				</div>
+				</div>
+				<div id="setTime">
+						<span id="span">Записать сессию в БД</span>
+				<div class="inputForm">
+					<button id="start">Старт</button> 
+						<input type="number" id="min" class="timeInput centered" placeholder="мин">
+					<input type="number" id="sec" class="timeInput centered" placeholder="сек">
+					<button id="stop">Стоп</button>
+				</div>
+				</div>
+			<button id="seeGraph" class="">Посмотреть график</button>
 			</div>
-	        </div>
-	        <div id="setTime">
-	                <span id="span">Записать сессию в БД</span>
-			<div>
-			    <button id="start">Старт</button> 
-		            <input type="number" id="min" class="timeInput centered" placeholder="мин">
-			    <input type="number" id="sec" class="timeInput centered" placeholder="сек">
-			    <button id="stop">Стоп</button>
-			</div>
-	        </div>
-		<button id="seeGraph" class="">Посмотреть график</button>
-	    </div>
-	</section>
-    <script src="/scripts/mainPage.js"></script>
+		</section>
+	</main>
+	<span id="Tahat">ТахатАКСИ</span>
+
+    <script src="./scripts/mainPage.js"></script>
 </body>
 
 </html>

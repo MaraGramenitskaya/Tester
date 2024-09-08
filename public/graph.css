@@ -37,7 +37,7 @@ body {
     flex-direction: row;
     align-items: start;
     justify-content: center;
-    background-image: url(images/bg.png);
+    background-image: url(images/bg.svg);
     background-size: cover;
     background-attachment: fixed;
     position: relative;

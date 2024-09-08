@@ -11,14 +11,14 @@ const options = {
         }
     },
     elements: {
-      point: {
-        radius: 0, 
-        pointStyle: 'circle' 
-      }
+        point: {
+            radius: 0,
+            pointStyle: 'circle'
+        }
     },
     interaction: {
-      mode: 'index',
-      intersect: false
+        mode: 'index',
+        intersect: false
     },
     bezierCurve: true,
     plugins: {
@@ -42,6 +42,20 @@ const options = {
 const ctx1 = document.getElementById("myChart").getContext("2d");
 const ctx2 = document.getElementById("myChart2").getContext("2d");
 const charts = {};
+
+function checkBodyHeight() {
+    const Tahat = document.getElementById('Tahat');
+    const bodyHeight = document.body.offsetHeight;
+    const viewportHeight = window.innerHeight;
+    const TahatHeight = Tahat.offsetHeight;
+
+    if (bodyHeight > (viewportHeight * 0.99 - TahatHeight)) {
+        Tahat.style.position = "relative";
+    } else {
+        Tahat.style.position = "fixed";
+    }
+    window.addEventListener("resize", checkBodyHeight);
+}
 
 function createChart(ctx, data, options, chartId) {
     if (charts[chartId]) {
@@ -92,15 +106,15 @@ function extractData(data) {
                 i++
             }
         }
-
+        
     }
     return { timestamps, datasets1, datasets2 };
 }
 
 fetch("/getDataBySession")
-    .then(response => response.json())
-    .then(data => drawGraph(data))
-    .catch(error => console.error("Error fetching data:", error));
+.then(response => response.json())
+.then(data => drawGraph(data))
+.catch(error => console.error("Error fetching data:", error));
 
 document.querySelector(".drop").addEventListener("click", function (event) {
     this.querySelector("div").style.display = "flex";
@@ -120,7 +134,7 @@ document.getElementById("lastSession").addEventListener("click", async () => {
     });
     const lastSession = await response.json();
     document.getElementById("session").value = lastSession.lastSession;
-
+    
 })
 
 document.getElementById("seeSession").addEventListener("click", function () {
@@ -134,17 +148,17 @@ document.getElementById("seeSession").addEventListener("click", function () {
             },
             body: JSON.stringify({ date: date })
         })
-            .then(response => response.json())
-            .then(sessions => {
-                const sessionsList = document.getElementById("sessions-list");
-                sessionsList.innerHTML = "";
-                sessions.forEach(session => {
-                    const option = document.createElement("option");
-                    option.value = session;
-                    sessionsList.appendChild(option);
-                });
-            })
-            .catch(error => console.error("Ошибка:", error));
+        .then(response => response.json())
+        .then(sessions => {
+            const sessionsList = document.getElementById("sessions-list");
+            sessionsList.innerHTML = "";
+            sessions.forEach(session => {
+                const option = document.createElement("option");
+                option.value = session;
+                sessionsList.appendChild(option);
+            });
+        })
+        .catch(error => console.error("Ошибка:", error));
     }
 });
 
@@ -158,12 +172,14 @@ document.getElementById("confirm").addEventListener("click", function () {
             },
             body: JSON.stringify({ session: sessionValue })
         })
-            .then(response => response.json())
-            .then(data => drawGraph(data))
-            .catch(error => console.error("Error:", error));
+        .then(response => response.json())
+        .then(data => drawGraph(data))
+        .catch(error => console.error("Error:", error));
     }
 });
 
 tester.addEventListener("click", () => {
     window.location.href = "/";
 });
+
+checkBodyHeight();
