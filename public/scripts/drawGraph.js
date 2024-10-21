@@ -1,4 +1,7 @@
 const tester = document.getElementById("tester")
+const info = document.getElementById('info')
+const infoBlock = document.getElementById('infoBlock')
+const ok = document.getElementById('ok')
 const colors = ["rgb(193, 101, 243)", "rgb(152, 17, 117)", "rgb(20, 221, 145)", "rgb(250, 230, 50)", "rgb(23, 79, 109)", "rgb(105, 244, 5)", "rgb(96, 20, 238)", "rgb(237, 91, 91)", "rgb(57, 186, 255)", "rgb(20, 221, 145)", "rgb(250, 230, 50)", "rgb(23, 79, 109)", "rgb(105, 244, 5)", "rgb(96, 20, 238)", "rgb(237, 91, 91)", "rgb(57, 186, 255)"]
 
 const options = {
@@ -111,11 +114,6 @@ function extractData(data) {
     return { timestamps, datasets1, datasets2 };
 }
 
-fetch("/getDataBySession")
-.then(response => response.json())
-.then(data => drawGraph(data))
-.catch(error => console.error("Error fetching data:", error));
-
 document.querySelector(".drop").addEventListener("click", function (event) {
     this.querySelector("div").style.display = "flex";
     event.stopPropagation();
@@ -181,5 +179,17 @@ document.getElementById("confirm").addEventListener("click", function () {
 tester.addEventListener("click", () => {
     window.location.href = "/";
 });
+
+info.addEventListener("click", () => {
+    infoBlock.style.display = 'flex';
+});
+ok.addEventListener("click", () => {
+    infoBlock.style.display = 'none';
+})
+
+fetch("/getDataBySession")
+.then(response => response.json())
+.then(data => drawGraph(data))
+.catch(error => console.error("Error fetching data:", error));
 
 checkBodyHeight();

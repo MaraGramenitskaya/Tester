@@ -1,17 +1,34 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тестер</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Тестер</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body class="display">
+	<div id="infoBlock" class="display">
+		<div id="infoText">
+			<b>Образец</b> – контрольный датчик<br>
+			<b>Заданная температура</b> – заданная температура нагрева радиатора<br>
+			<b>Температура</b> – температурные датчики<br>
+			<b>Триггер</b> – Защитные датчики<br>
+			<b>Checkbox</b>(поля с галочкой) – при выключении данные этого датчика вписываться в базу данных не будут<br>
+			<b>Задать максимальную температуру</b> – задать значение для нагрева радиатора (принимает значения от 0 до 100)<br>
+			<b>Записать сессию в БД</b> - При нажатии на <b>Старт</b> начинается запись данных в базу данных в течении времени введенного в поля <b>мин</b> и <b>сек</b>, при нажатии на <b>Стоп</b> запись в базу данных прекращается<br>
+			<b>Посмотреть график</b> - Кнопка перенаправляет на страницу для просмотра графиков<br><br>
+			<span>При получении ошибки цвет датчика меняется на красный</span>
+		</div>
+		<div id="infoButtons">
+			<button id="ok" class="InfoButtons">Понятно</button>
+			<button id="openInfo" class="display InfoButtons">Открыть<img src="./images/share.svg" alt="share"
+					id="share"></button>
+		</div>
+	</div>
 	<main class="display">
-		<section class="display section" id="left"> 
+		<section class="display section" id="left">
 			<div id="leftSensors" class="display dvoynoy">
 				<p>Образец</p>
 				<div id="sample" class="sensor">Образец</div>
@@ -19,38 +36,39 @@
 					<p>Заданная<br> температура</p>
 					<p id="setTemp"></p>
 				</div>
-		</div>
-				<div class="notification-container display" id="notification">
-						<p id="startText">Запись в БД начата</p>
-						<p id="notificationText"></p>
-				</div>
+			</div>
+			<div class="notification-container display" id="notification">
+				<p id="startText">Запись в БД начата</p>
+				<p id="notificationText"></p>
+			</div>
 		</section>
-		<section class="display section">
+		<img src="./images/info.svg" id="info" alt="info">
+		<section class="display section" id="right">
 			<div id="big" class="display"></div>
-		<div class="display" id="bottom">   
+			<div class="display" id="bottom">
 				<div id="setTempForm">
 					<span>Задать максимальную температуру</span>
-				<div class="inputForm">
+					<div class="inputForm">
 						<input id="myInput" class="centered" type="number" placeholder="Max. температура">
 						<button id="button" onclick="sendMessage()">Задать</button>
-				</div>
+					</div>
 				</div>
 				<div id="setTime">
-						<span id="span">Записать сессию в БД</span>
-				<div class="inputForm">
-					<button id="start">Старт</button> 
+					<span>Записать сессию в БД</span>
+					<div class="inputForm">
+						<button id="start">Старт</button>
 						<input type="number" id="min" class="timeInput centered" placeholder="мин">
-					<input type="number" id="sec" class="timeInput centered" placeholder="сек">
-					<button id="stop">Стоп</button>
+						<input type="number" id="sec" class="timeInput centered" placeholder="сек">
+						<button id="stop">Стоп</button>
+					</div>
 				</div>
-				</div>
-			<button id="seeGraph" class="">Посмотреть график</button>
+				<button id="seeGraph">Посмотреть график</button>
 			</div>
 		</section>
 	</main>
 	<span id="Tahat">ТахатАКСИ</span>
 
-    <script src="./scripts/mainPage.js"></script>
+	<script src="./scripts/mainPage.js"></script>
 </body>
 
 </html>

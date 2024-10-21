@@ -6,6 +6,9 @@ const graph = document.getElementById("seeGraph");
 const notif = document.getElementById('notification');
 const notifText = document.getElementById('notificationText');
 const startText = document.getElementById('startText');
+const info = document.getElementById('info')
+const infoBlock = document.getElementById('infoBlock')
+const ok = document.getElementById('ok')
 let stop = false
 let timerId = null;
 
@@ -16,18 +19,18 @@ const timer = {
         const checkboxStates = Array.from(document.querySelectorAll(".dvoynoy input[type='checkbox']")).map(checkbox => checkbox.checked);
         if (min > 0 || sec > 0) {
             if (confirm(`Вы уверены, что хотите начать ${min} минутную и ${sec} секундную сессию? `)) {
-                // fetch("/start", {
-                //     method: "POST",
-                //     headers: {
-                //         "Content-Type": "application/json"
-                //     },
-                //     body: JSON.stringify({ min, sec, checkboxStates })
-                // })
-                //     .then(response => response.text())
-                //     .then(data => console.log(data))
-                //     .then(stop = false)
-                //     .then(startTimer(min, sec))
-                //     .catch(error => console.error(error));
+                fetch("/start", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ min, sec, checkboxStates })
+                })
+                    .then(response => response.text())
+                    .then(data => console.log(data))
+                    .then(stop = false)
+                    .then(startTimer(min, sec))
+                    .catch(error => console.error(error));
                 stop = false
                 startTimer(min, sec)
             }
@@ -51,8 +54,8 @@ function createBig() {
         div.className = "dvoynoy";
         div.innerHTML = `
         <p>${i}</p>
-            <div id="temp${i}" class="sensor">Температура ${i}</div>
-            <div id="trigger${i}" class="sensor">Триггер ${i}</div>
+            <div id="temp${i}" class="sensor"><p>Температура</p>${i}</div>
+            <div id="trigger${i}" class="sensor"><p>Триггер<p>${i}</div>
             <input type="checkbox" id="checkbox${i}" checked>
             <div class="checkbox-image" id="image${i}"></div>
             `;
@@ -90,7 +93,7 @@ function updateElements(message) {
         const tempElements = ["temp1", "temp2", "temp3", "temp4", "temp5", "temp6", "temp7"].map(id => document.getElementById(id));
         const triggerElements = ["trigger1", "trigger2", "trigger3", "trigger4", "trigger5", "trigger6", "trigger7"].map(id => document.getElementById(id));
         const checkboxStates = Array.from(document.querySelectorAll(".dvoynoy input[type='checkbox']")).map(checkbox => checkbox.checked);
-        
+
         sample.innerText = values[0];
         maxTemp.innerText = values[1];
         for (let i = 0; i < 7; i++) {
@@ -102,7 +105,7 @@ function updateElements(message) {
                 triggerElements[i].style.backgroundColor = "#ff3c00";
                 triggerElements[i].innerText = "Error";
             } else {
-                
+
                 if (checkboxStates[i]) {
                     tempElements[i].style.backgroundColor = "#ffdab7";
                     triggerElements[i].style.backgroundColor = triggerValue === "1" ? "#9dff00" : "#ffdab7";
@@ -130,9 +133,9 @@ function sendMessage() {
             },
             body: JSON.stringify({ input: inputValue })
         })
-        .then(response => response.text())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));
+            .then(response => response.text())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
     }
 }
 
@@ -142,7 +145,7 @@ function startTimer(min, sec) {
     const timerInterval = setInterval(() => {
         if (!stop) {
             if (secondsPassed > 0) {
-                notifText.innerHTML = `Оставшееся время: ${secondsPassed}с`;
+                notifText.innerHTML = `Оставшееся время: ${Math.floor(secondsPassed/60)}м и ${secondsPassed%60}с`;
                 startText.textContent = `Запись в БД начата`
                 secondsPassed--;
             } else {
@@ -165,6 +168,13 @@ function stopTimer() {
 graph.addEventListener("click", () => {
     window.location.href = "/graph";
 });
+
+info.addEventListener("click", () => {
+    infoBlock.style.display = 'flex';
+});
+ok.addEventListener("click", () => {
+    infoBlock.style.display = 'none';
+})
 
 startBtn.addEventListener("click", timer.start);
 stopBtn.addEventListener("click", timer.stop);

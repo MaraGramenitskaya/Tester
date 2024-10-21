@@ -11,27 +11,38 @@
     --input-button-width: 175px;
 }
 
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('NunitoSans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* left (Левая часть программы) */
-/* right - правая часть программы с графиками и надписью */
-body, .drop, .options, .inputBlock, .graph, .left, .right{
+.display,
+body {
     display: flex;
     align-items: center;
     flex-direction: column;
     text-align: center;
 }
 
-label, button, .drop {
+label,
+button,
+.drop {
     cursor: pointer;
 }
 
 /* Стили для элементов с скруглением углов */
-.inputBlock, input, button {
+.inputBlock,
+input,
+button {
     border-radius: var(--border-radius);
 }
 
 /* Основные стили */
 body {
-    font-family: sans-serif;
+    font-family: 'Nunito Sans';
     font-size: 15px;
     font-weight: 600;
     flex-direction: row;
@@ -149,6 +160,8 @@ canvas {
     display: block;
     box-sizing: border-box;
     margin: 15px;
+    width: 750px;
+    height: auto;
 }
 
 /* Текст внизу */
@@ -171,4 +184,68 @@ canvas {
     font-size: 15px;
     border-radius: 10px;
     font-weight: 600;
+}
+
+#info {
+    width: 30px;
+    height: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+#infoBlock {
+    width: 700px;
+    height: 600px;
+    background-color: #fff5eb;
+    position: absolute;
+    box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#infoText {
+    width: 480px;
+    height: 390px;
+    background-color: #fff;
+    border: solid 1.5px var(--border-color);
+    border-radius: 5px;
+    overflow: scroll;
+    padding: 20px;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: start;
+}
+
+#infoText span {
+    text-align: center;
+    display: block;
+    padding: 0;
+}
+
+#infoButtons {
+    display: flex;
+    width: 522px;
+    margin-top: 35px;
+    justify-content: space-between;
+}
+
+#ok {
+    background-color: #fff5eb;
+    border: 1px solid var(--button-color);
+    color: var(--button-color);
+}
+
+.InfoButtons {
+    width: 250px;
+    height: 50px;
+    margin: 0;
+    font-size: 20px;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#share {
+    margin-left: 10px;
 }

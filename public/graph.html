@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,17 +11,17 @@
 </head>
 
 <body>
-    <div class="left">
+    <div class="left display">
         <button id="tester">Вернуться к тестеру</button>
-        <div class="drop">
+        <div class="drop display">
             <span>Выбор сессии</span>
-            <div class="options" id="options">
-                <div class="inputBlock">
+            <div class="options display" id="options">
+                <div class="inputBlock display">
                     <span>Показать сессии по дате</span>
                     <input type="date" id="time1" value="2024-10-01">
                     <button id="seeSession">Показать</button>
                 </div>
-                <div class="inputBlock">
+                <div class="inputBlock display">
                     <span>Сессия</span>
                     <input type="number" id="session" list="sessions-list" placeholder="номер">
                     <datalist id="sessions-list"></datalist>
@@ -32,18 +33,36 @@
 
         </div>
     </div>
-    <div class="right">
-        <div class="graph">
+    <div class="display">
+        <div class="graph display">
             <span>График температурных датчиков</span>
             <canvas id="myChart" width="750px" height="400"></canvas> </canvas>
         </div>
-        <div class="graph">
+        <div class="graph display">
             <span>График защитных датчиков</span>
             <canvas id="myChart2" width="750px" height="200"></canvas> </canvas>
         </div>
         <span id="Tahat">ТахатАКСИ</span>
     </div>
-    
+    <div id="infoBlock" class="display">
+        <div id="infoText">
+            <span>При запуске открывается график последней сессии</span>
+            <b>График температурных датчиков</b> – График изменения показателей температурныъ датчиков<br>
+            <b>График защитных датчиков</b> – График срабатывания защитныъ датчиков<br>
+            <b>Выбор сессии</b> - при нажатии выпадает меню для выбора сессий<br>
+            <b>Показать</b> - при нажатии в поле номер выпадает список с номерами сессий за выбранный день<br>
+            <b>Номер последней сессии</b> - выводит в поле номер номер последней зарегестрированной сессии<br>
+            <b>Подтвердить</b> - выводит сессию номер которой указан в поле номер<br>
+            <b>Вернуться к тестеру</b> - Кнопка перенаправляет на главную страницу<br>
+        </div>
+        <div id="infoButtons">
+            <button id="ok" class="InfoButtons">Понятно</button>
+            <button id="openInfo" class="display InfoButtons">Открыть<img src="./images/share.svg" alt="share"
+                    id="share"></button>
+        </div>
+    </div>
+    <img src="./images/info.svg" id="info" alt="info">
+
     <script src="./scripts/drawGraph.js"></script>
 </body>
 
