@@ -11,6 +11,15 @@
 </head>
 
 <body>
+    <div id="confirmBlock">
+        <p id="message">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas harum asperiores dolor ab
+            odio
+            sunt esse nobis necessitatibus, vitae accusamus porro ratione!</p>
+        <div>
+            <button id="send" class="InfoButtons">Ок</button>
+            <button id="cancel" class="display InfoButtons">Отмена</button>
+        </div>
+    </div>
     <div class="left display">
         <button id="tester">Вернуться к тестеру</button>
         <div class="drop display">
@@ -18,13 +27,13 @@
             <div class="options display" id="options">
                 <div class="inputBlock display">
                     <span>Показать сессии по дате</span>
-                    <input type="date" id="time1" value="2024-10-01">
+                    <input type="date" id="time1">
                     <button id="seeSession">Показать</button>
                 </div>
                 <div class="inputBlock display">
                     <span>Сессия</span>
                     <input type="number" id="session" list="sessions-list" placeholder="номер">
-                    <datalist id="sessions-list"></datalist>
+                    <div class="dropdown-list" id="sessions-list"></div>
                     <button id="lastSession">Номер последней сессии</button>
                 </div>
                 <button id="confirm">Подтвердить</button>
@@ -39,8 +48,9 @@
             <canvas id="myChart" width="750px" height="400"></canvas> </canvas>
         </div>
         <div class="graph display">
-            <span>График защитных датчиков</span>
-            <canvas id="myChart2" width="750px" height="200"></canvas> </canvas>
+            <span>Температура сработки защитных датчиков</span>
+            <div id="triggraph">
+            </div>
         </div>
         <span id="Tahat">ТахатАКСИ</span>
     </div>
@@ -48,17 +58,20 @@
         <div id="infoText">
             <span>При запуске открывается график последней сессии</span>
             <b>График температурных датчиков</b> – График изменения показателей температурныъ датчиков<br>
-            <b>График защитных датчиков</b> – График срабатывания защитныъ датчиков<br>
+            <b>Температура сработки защитных датчиков</b> – Показывает температуру на которой впервые сработал защитный датчик<br>
             <b>Выбор сессии</b> - при нажатии выпадает меню для выбора сессий<br>
             <b>Показать</b> - при нажатии в поле номер выпадает список с номерами сессий за выбранный день<br>
             <b>Номер последней сессии</b> - выводит в поле номер номер последней зарегестрированной сессии<br>
-            <b>Подтвердить</b> - выводит сессию номер которой указан в поле номер<br>
+            <b>Подтвердить</b> - выводит сессию, номер которой указан в поле номер<br>
             <b>Вернуться к тестеру</b> - Кнопка перенаправляет на главную страницу<br>
         </div>
         <div id="infoButtons">
             <button id="ok" class="InfoButtons">Понятно</button>
-            <button id="openInfo" class="display InfoButtons">Открыть<img src="./images/share.svg" alt="share"
-                    id="share"></button>
+            <a
+                href="https://docs.google.com/document/d/1FwQPJ5p9f3CsOoVzxUf9RG6E2iSVIlQt/edit?usp=sharing&ouid=103669314143384309328&rtpof=true&sd=true" target="_blank">
+                <button id="openInfo" class="display InfoButtons">Открыть<img src="./images/share.svg" alt="share"
+                        id="share"></button>
+            </a>
         </div>
     </div>
     <img src="./images/info.svg" id="info" alt="info">

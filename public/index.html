@@ -9,22 +9,36 @@
 </head>
 
 <body class="display">
+	<div id="confirmBlock">
+		<p id="message"></p>
+		<div>
+			<button id="send" class="InfoButtons">Ок</button>
+			<button id="cancel" class="display InfoButtons">Отмена</button>
+		</div>
+	</div>
 	<div id="infoBlock" class="display">
 		<div id="infoText">
 			<b>Образец</b> – контрольный датчик<br>
 			<b>Заданная температура</b> – заданная температура нагрева радиатора<br>
 			<b>Температура</b> – температурные датчики<br>
 			<b>Триггер</b> – Защитные датчики<br>
-			<b>Checkbox</b>(поля с галочкой) – при выключении данные этого датчика вписываться в базу данных не будут<br>
-			<b>Задать максимальную температуру</b> – задать значение для нагрева радиатора (принимает значения от 0 до 100)<br>
-			<b>Записать сессию в БД</b> - При нажатии на <b>Старт</b> начинается запись данных в базу данных в течении времени введенного в поля <b>мин</b> и <b>сек</b>, при нажатии на <b>Стоп</b> запись в базу данных прекращается<br>
+			<b>Checkbox</b>(поля с галочкой) – при выключении данные этого датчика вписываться в базу данных не
+			будут<br>
+			<b>Задать максимальную температуру</b> – задать значение для нагрева радиатора (принимает значения от 0 до
+			100)<br>
+			<b>Записать сессию в БД</b> - При нажатии на <b>Старт</b> начинается запись данных в базу данных в течении
+			времени введенного в поля <b>мин</b> и <b>сек</b>, при нажатии на <b>Стоп</b> запись в базу данных
+			прекращается<br>
 			<b>Посмотреть график</b> - Кнопка перенаправляет на страницу для просмотра графиков<br><br>
 			<span>При получении ошибки цвет датчика меняется на красный</span>
 		</div>
 		<div id="infoButtons">
 			<button id="ok" class="InfoButtons">Понятно</button>
-			<button id="openInfo" class="display InfoButtons">Открыть<img src="./images/share.svg" alt="share"
-					id="share"></button>
+			<a
+				href="https://docs.google.com/document/d/1FwQPJ5p9f3CsOoVzxUf9RG6E2iSVIlQt/edit?usp=sharing&ouid=103669314143384309328&rtpof=true&sd=true" target="_blank">
+				<button id="openInfo" class="display InfoButtons">Открыть<img src="./images/share.svg" alt="share"
+						id="share"></button>
+			</a>
 		</div>
 	</div>
 	<main class="display">

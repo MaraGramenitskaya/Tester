@@ -142,5 +142,5 @@ app.post("/getLastSession", (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server : http://192.168.1.10:${port}`);
+    console.log(`Server : http://127.0.0.1:${port}`);
 });

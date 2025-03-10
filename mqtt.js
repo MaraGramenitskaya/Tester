@@ -3,13 +3,14 @@ require('dotenv').config();
 const mqttHost = process.env.MQTT_HOST;
 const mqttUsername = process.env.MQTT_USERNAME;
 const mqttPassword = process.env.MQTT_PASSWORD ;
+const mqttPort = process.env.MQTT_PORT
 const clientId = "emqx_nodejs_" + Math.random().toString(16).substring(2, 8);
 const qos = 2;
 let subscribedTopics = ["test/Max", "test/Temp"];
 const options = {
     clientId,
     host: mqttHost,
-    port: 1883,
+    port: mqttPort,
     clean: true,
     connectTimeout: 4000,
     username: mqttUsername,
