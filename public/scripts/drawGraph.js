@@ -251,8 +251,10 @@ seeSessions.addEventListener("click", function () {
 
     // Функция для переключения видимости списка
     sessionInput.addEventListener('click', function(event) {
-        sessionsList.style.display = sessionsList.style.display === 'none' || sessionsList.style.display === '' ? 'block' : 'block';
-        event.stopPropagation(); // Останавливаем всплытие события
+        if(sessionInput.value){
+            sessionsList.style.display = sessionsList.style.display === 'none' || sessionsList.style.display === '' ? 'block' : 'block';
+            event.stopPropagation(); // Останавливаем всплытие события
+        }
     });
 
 // Скрываем список, если кликнули вне его
