@@ -27,7 +27,7 @@ let checkboxStates;
 let cachedMessage = "";
 let lastIndex = "";
 let hash = "";
-let lastSession;
+let lastSession = 0;
 
 async function viewLastSession() {
     lastSession = await initializeDatabase();

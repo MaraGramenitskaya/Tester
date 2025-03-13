@@ -142,7 +142,8 @@ function updateElements(message) {
         const tempElements = ["temp1", "temp2", "temp3", "temp4", "temp5", "temp6", "temp7"].map(id => document.getElementById(id));
         const triggerElements = ["trigger1", "trigger2", "trigger3", "trigger4", "trigger5", "trigger6", "trigger7"].map(id => document.getElementById(id));
         const checkboxStates = Array.from(document.querySelectorAll(".dvoynoy input[type='checkbox']")).map(checkbox => checkbox.checked);
-
+        console.log(values);
+        
         sample.innerText = values[0];
         maxTemp.innerText = values[1];
         for (let i = 0; i < 7; i++) {
@@ -225,4 +226,8 @@ stopBtn.addEventListener("click", timer.stop);
 createBig();
 checkBodyHeight();
 
-updateElements();
+setInterval(() => {
+    fetch("/checkUpdates")
+        .then(response => response.text())
+        .then(message => updateElements(message));
+}, 1000);

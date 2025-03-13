@@ -267,6 +267,8 @@ main {
     border-radius: 10px;
     display: none;
     flex-direction: column;
+    justify-content: center;
+    transform: translateY(15%);
 }
 
 #infoText {
