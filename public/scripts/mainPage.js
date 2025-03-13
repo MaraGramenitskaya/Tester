@@ -164,7 +164,7 @@ function updateElements(message) {
                     triggerElements[i].style.backgroundColor = triggerValue === "1" ? "#9dff00" : "#FFF5EB";
                 }
                 tempElements[i].innerText = tempValue;
-                triggerElements[i].innerText = `Trigger ${i + 1}`;
+                triggerElements[i].innerText = `Триггер ${i + 1}`;
             }
         }
     }
