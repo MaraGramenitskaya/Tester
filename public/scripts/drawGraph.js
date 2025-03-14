@@ -270,7 +270,7 @@ document.querySelector(".drop div").addEventListener('click', function (event) {
 document.getElementById("confirm").addEventListener("click", function () {
     const sessionValue = sessionInput.value;
     if (sessionValue > 0) {
-        showConfirm(`Вы уверены, что хотите посмотреить график за ${sessionValue} сессию?`, () => {
+        showConfirm(`Вы уверены, что хотите посмотреть график за ${sessionValue} сессию?`, () => {
             fetch("/confirmSession", {
                 method: "POST",
                 headers: {
