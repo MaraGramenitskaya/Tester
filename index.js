@@ -12,7 +12,6 @@ app.use(express.json());
 const { client } = require("./mqtt");
 const { crcTable, column, connect, insertMessageIntoDatabase, crc16, initializeDatabase } = require("./utils");
 const sendMessageHandler = require("./routes/sendMessageRoute");
-const getAllHandler = require("./routes/getAllRoute");
 const mainHandler = require("./routes/mainRoute");
 const graphHandler = require("./routes/graphRoute");
 const getDataBySessionHandler = require("./routes/getDataBySessionRoute")
@@ -76,8 +75,6 @@ app.post("/send-message", sendMessageHandler);
 app.get("/", mainHandler);
 
 app.get("/graph", graphHandler);
-
-app.get("/getAllSessions", getAllHandler);
 
 app.get("/getDataBySession", getDataBySessionHandler);
 
