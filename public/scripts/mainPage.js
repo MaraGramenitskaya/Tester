@@ -226,8 +226,8 @@ stopBtn.addEventListener("click", timer.stop);
 createBig();
 checkBodyHeight();
 
-setInterval(() => {
-    fetch("/checkUpdates")
-        .then(response => response.text())
-        .then(message => updateElements(message));
-}, 1000);
+// setInterval(() => {
+//     fetch("/checkUpdates")
+//         .then(response => response.text())
+//         .then(message => updateElements(message));
+// }, 1000);
